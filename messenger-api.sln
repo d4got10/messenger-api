@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "network-technologies", "network-technologies\network-technologies.csproj", "{46D7B1B1-A285-48EB-85CF-93A91F9AE969}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46D7B1B1-A285-48EB-85CF-93A91F9AE969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46D7B1B1-A285-48EB-85CF-93A91F9AE969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46D7B1B1-A285-48EB-85CF-93A91F9AE969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46D7B1B1-A285-48EB-85CF-93A91F9AE969}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {101F8EFF-6B2A-41D5-930F-32C8A7DD60BF}
+	EndGlobalSection
+EndGlobal
