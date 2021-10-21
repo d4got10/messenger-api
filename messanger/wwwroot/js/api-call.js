@@ -1,26 +1,83 @@
 ﻿const messages_container = document.getElementById("messages");
+const users_container = document.getElementById("users");
 const message_input_container = document.getElementById("message-input");
 const send_message_button = document.getElementById("send-message-button");
-const url = "/messages";//"https://188.166.25.209/weather";
+const messagesUrl = "/messages";//"https://188.166.25.209/weather";
+const usersUrl = "/users";
+
+const user_selected_btn = "user-selected-btn";
+
+let chosenUser = "";
+let my_name = "";
 
 $.ajaxSetup({ headers: { 'csrftoken': '{{ csrf_token() }}' } });
+
+function init(user_name) {
+    my_name = user_name;
+}
 
 function show_messages(data) {
     messages_container.innerHTML = "";
     for (let i = 0; i < data["messages"].length; i++) {
         let node = document.createElement('div');
-        node.textContent = data['messages'][i];
+        message = JSON.parse(data["messages"][i]);
+        if (message['Email'] == my_name) {
+            node.classList.add('user-me');
+        } else {
+            node.classList.add('user-other');
+        }
+        
+        node.textContent = message['Message'];
         messages_container.append(node);
+    }
+    messages_container.scrollTop = messages_container.scrollHeight;
+}
+
+function choose_user(user_name) {
+    if (chosenUser != "") {
+        let prev_user_button = document.getElementById(chosenUser);
+        prev_user_button.classList.remove(user_selected_btn);
+    }
+
+    chosenUser = user_name;
+
+    let new_user_button = document.getElementById(user_name);
+    new_user_button.classList.add(user_selected_btn);
+
+    get_messages(my_name, user_name);
+}
+
+function show_users(data) {
+    users_container.innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        let id = data[i]['Id'];
+        let email = data[i]['Email'];
+        let node = document.createElement('div');
+        let but = document.createElement('button');
+
+        but.id = email;
+        but.classList.add("btn");
+        but.textContent = email;
+
+        node.append(but);
+        users_container.append(node);
+        if (i == 0) {
+            choose_user(email);
+        }
+        but.addEventListener("click", function () {
+            choose_user(email);
+        });
     }
 }
 
-function get_messages(user_name) {
+function get_messages(user_name, from_user_name) {
     $.ajax({
         type: 'GET',
-        url: url,
+        url: messagesUrl,
         dataType: 'json',
         headers: {
-            "Sender": user_name
+            "Sender": user_name,
+            "Receiver": from_user_name
         },
         success: function (data) {
             //alert("Load was performed.");
@@ -31,11 +88,12 @@ function get_messages(user_name) {
         }
     });
 }
+let data123;
 
 function post_message(user_name, receiver_name, message) {
     $.ajax({
         type: 'POST',
-        url: url,
+        url: messagesUrl,
         dataType: 'json',
         headers: {
             "Sender": user_name,
@@ -43,11 +101,56 @@ function post_message(user_name, receiver_name, message) {
             "Message": message
         },
         success: function (data) {
-            //alert("Post was performed.");
-            get_messages(user_name);
+            on_post_success(user_name, receiver_name);
         },
-        error: function () {
-            alert("Post was NOT performed.");
+        error: function (data) {
+            if (data.status == 200)
+                on_post_success(user_name, receiver_name);
+            else
+                alert("Post was NOT performed.");
         }
     });
 }
+
+function on_post_success(user_name, receiver_name) {
+    get_messages(user_name, receiver_name);
+}
+
+function get_users(user_name) {
+    $.ajax({
+        type: 'GET',
+        url: usersUrl,
+        dataType: 'json',
+        headers: {
+            "Sender": user_name
+        },
+        success: function (data) {
+            //alert("Load was performed.");
+            show_users(data);
+        },
+        error: function () {
+            alert("Users were NOT loaded.");
+        }
+    });
+}
+
+function update_messages() {
+    setTimeout(update_messages, 5000);
+    get_messages(my_name, chosenUser);
+}
+
+setTimeout(update_messages, 5000);
+
+//var source = new EventSource("/sse");
+
+//source.onopen = function (event) {
+//    alert("Opened");
+//}
+
+//source.onmessage = function (event) {
+//    alert(event.data);
+//}
+
+//source.onerror = function (event) {
+//    alert("Closed");
+//}

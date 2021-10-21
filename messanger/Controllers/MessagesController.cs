@@ -28,28 +28,34 @@ namespace network_technologies.Controllers
             _logger = logger;
         }
 
+
         [HttpGet]
-        public async Task<string> Get([FromHeader(Name = "Sender")] string username)
+        public async Task<string> Get([FromHeader(Name = "Sender")] string username, [FromHeader(Name = "Receiver")] string fromUsername)
         {
             if (string.IsNullOrEmpty(username))
                 return null;
 
             var user = await _usersContext.Users.FirstOrDefaultAsync((t) => t.Email == username);
+            var sender = await _usersContext.Users.FirstOrDefaultAsync((t) => t.Email == fromUsername);
+
             var messages = _messagesContext.Messages
-                .Where((t) => t.ReceiverId == user.Id)
-                .Select((t) => t.SenderId + ":" + t.Data);
+                .Where((t) => t.ReceiverId == user.Id && t.SenderId == sender.Id || t.ReceiverId == sender.Id && t.SenderId == user.Id)
+                .OrderBy((t) => t.Date)
+                .Select((t) => new MessageViewModel(t.SenderId == user.Id ? user.Email : sender.Email, t.Data))
+                .Select((t) => JsonConvert.SerializeObject(t));
 
             var t = ConvertMessages(messages);
             return t;
         }
 
+
         [HttpPost]
-        public async Task<string> Post([FromHeader(Name = "Sender")]string senderUserName,
+        public async Task<StatusCodeResult> Post([FromHeader(Name = "Sender")]string senderUserName,
             [FromHeader(Name = "Receiver")] string receiverUserName,
             [FromHeader(Name = "Message")] string message)
         {
             if (string.IsNullOrEmpty(senderUserName) || string.IsNullOrEmpty(receiverUserName) || string.IsNullOrEmpty(message))
-                return "false";
+                return StatusCode(400);
 
             try
             {
@@ -65,11 +71,11 @@ namespace network_technologies.Controllers
                     });
                 await _messagesContext.SaveChangesAsync();
 
-                return "true";
+                return StatusCode(200);
             }
             catch (Exception ex)
             {
-                return "false";
+                return StatusCode(500);
             }
         }
 

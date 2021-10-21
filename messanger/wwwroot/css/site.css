@@ -188,3 +188,34 @@ body {
     font-size: 24px;
     text-align: center;
 }
+
+.scrollable{
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.user-selected-btn{
+    background: #eee;
+}
+
+/* On mouse-over */
+.btn:hover {
+    background: #eee;
+}
+
+.user-me{
+    text-align: left;
+}
+
+.user-other{
+    text-align: right;
+}

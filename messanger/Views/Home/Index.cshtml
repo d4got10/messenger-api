@@ -30,24 +30,33 @@
         <h class="big-bold-text"><span class="blue">Приветствую</span> <span class="yellow">@User.Identity.Name</span></h>
     </div>
     <div class="chat">
-        <input type="text" id="receiver-text-box">
-        <input type="text" id="message-input">
-        <button id="send-message-button">Отправить</button>
-        <div id="messages"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 bg-info scrollable" id="users"></div>
+                <div class="col-9 bg-dark scrollable" id="messages"></div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-7">
+                    <input type="text" id="message-input">
+                </div>
+                <div class="col-2">
+                    <button id="send-message-button">Отправить</button>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <script src="~/js/api-call.js"></script>
     <script>
-        function get_receiver_name() {
-            var receiverTextBox = document.getElementById("receiver-text-box");
-            return receiverTextBox.value;
-        }
-
         function on_send_message_button_click() {
-            post_message("@User.Identity.Name", get_receiver_name(), message_input_container.value);
+            post_message("@User.Identity.Name", chosenUser, message_input_container.value);
         }
 
         send_message_button.addEventListener("click", on_send_message_button_click);
-        get_messages("@User.Identity.Name");
+        get_users("@User.Identity.Name");
+        init("@User.Identity.Name");
     </script>
 </body>
 </html>
