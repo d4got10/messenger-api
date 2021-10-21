@@ -44,34 +44,7 @@ namespace network_technologies.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Post([FromHeader(Name = "Sender")] string username, [FromHeader(Name = "Message")] string message)
-        {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(message))
-                return "false";
-
-            try
-            {
-                var user = await _usersContext.Users.FirstOrDefaultAsync((t) => t.Email == username);
-                _messagesContext.Add(
-                    new Message
-                    {
-                        SenderId = user.Id,
-                        ReceiverId = user.Id,
-                        Data = message,
-                        Date = DateTime.Now
-                    });
-                await _messagesContext.SaveChangesAsync();
-
-                return "true";
-            }
-            catch(Exception ex)
-            {
-                return "false";
-            }
-        }
-
-        [HttpPost]
-        public async Task<string> Post([FromHeader(Name = "Sender")] string senderUserName,
+        public async Task<string> Post([FromHeader(Name = "Sender")]string senderUserName,
             [FromHeader(Name = "Receiver")] string receiverUserName,
             [FromHeader(Name = "Message")] string message)
         {
