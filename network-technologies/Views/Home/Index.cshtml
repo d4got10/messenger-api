@@ -1,0 +1,80 @@
+﻿@page
+@model network_technologies.Viewes.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+</head>
+<body class="text-main-font">
+    <nav>
+        <div class="header in-row align-right">
+            <a href="index.html">Домой</a>
+            <div class="dropdown">
+                <button class="drop-btn">Наведи</button>
+                <div class="dropdown-content">
+                    <a href="https://www.vk.com/4ever4got10">ВК</a>
+                    <a href="https://www.github.com/d4got10">github</a>
+                    <a href="https://www.dotabuff.com/players/124142531">dotabuff</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="text-align-center">
+        <h class="big-bold-text"><span class="blue">Приветствую</span> <span class="yellow">смотрящих</span></h>
+    </div>
+    <div class="chat">
+        <input type="text" id="message-input">
+        <button id="send-message-button">Отправить</button>
+        <div id="messages"></div>
+    </div>
+    <div class="white">
+        Зовут Данил, фамилия - Изотов.<br>
+        Люблю играть в игры и делать их.<br>
+        Работаю в игровой студии SquareDino.<br>
+        Создавал свой сайт на ASP.NET и забил, потому что <del>заебался</del> устал верстать.<br>
+        Дальше тупо рофланы.
+    </div>
+    <div>
+        <img class="small-image" src="/images/dovolnii_ukrainec.jpg">
+    </div>
+    <div class="big-text white">
+        Это чисто я бахнув пельменi
+    </div>
+    <br>
+    <hr>
+    <div class="big-text white">
+        Что я люблю (Генадий Букин):
+        <ul>
+            <li>Дабл мид</li>
+            <li>Шадоу амулет</li>
+            <li>Орущих азиатов</li>
+            <li>Орущих филипинцев</li>
+        </ul>
+    </div>
+    <div>
+        <button onclick="var snd = new Audio('html/wee-weeees.mp3'); snd.play();">
+            Я тут притаился
+        </button>
+    </div>
+    <del>
+        Ненавижу азиатов и филипинцев
+    </del>
+    <code>
+        print(Hello World!)
+    </code>
+    <!--<script>
+        $.get( "https://localhost:44333/weather", function( data ) {
+        $( ".result" ).html( data );
+        alert( "Load was performed." );
+        });
+    </script>-->
+    <script src="~/js/api-call.js"></script>
+</body>
+</html>

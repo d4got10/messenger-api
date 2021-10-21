@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+</head>
+<body class="text-main-font">
+    <nav>
+        <div class="header in-row align-right">
+            <a href="index.html">Домой</a>
+            <div class="dropdown">
+                <button class="drop-btn">Наведи</button>
+                <div class="dropdown-content">
+                    <a href="https://www.vk.com/4ever4got10">ВК</a>
+                    <a href="https://www.github.com/d4got10">github</a>
+                    <a href="https://www.dotabuff.com/players/124142531">dotabuff</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="text-align-center">
+        <h class="big-bold-text"><span class="blue">Приветствую</span> <span class="yellow">@User.Identity.Name</span></h>
+    </div>
+    <div class="chat">
+        <input type="text" id="receiver-text-box">
+        <input type="text" id="message-input">
+        <button id="send-message-button">Отправить</button>
+        <div id="messages"></div>
+    </div>
+    <script src="~/js/api-call.js"></script>
+    <script>
+        function get_receiver_name() {
+            var receiverTextBox = document.getElementById("receiver-text-box");
+            return receiverTextBox.value;
+        }
+
+        function on_send_message_button_click() {
+            post_message("@User.Identity.Name", get_receiver_name(), message_input_container.value);
+        }
+
+        send_message_button.addEventListener("click", on_send_message_button_click);
+        get_messages("@User.Identity.Name");
+    </script>
+</body>
+</html>

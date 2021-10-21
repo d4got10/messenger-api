@@ -11,14 +11,14 @@ namespace network_technologies.Controllers
 {
     [EnableCors("MyPolicy")]
     [ApiController]
-    [Route("weather")]
-    public class WeatherController : ControllerBase
+    [Route("messages")]
+    public class MessagesController : ControllerBase
     {
         private static readonly Dictionary<string, List<string>> Messages = new Dictionary<string, List<string>>();
 
-        private readonly ILogger<WeatherController> _logger;
+        private readonly ILogger<MessagesController> _logger;
 
-        public WeatherController(ILogger<WeatherController> logger)
+        public MessagesController(ILogger<MessagesController> logger)
         {
             _logger = logger;
         }
