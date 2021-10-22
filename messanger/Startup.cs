@@ -29,8 +29,8 @@ namespace messanger
             string userConnection = Configuration.GetConnectionString("UsersConnection");
             string messagesConnection = Configuration.GetConnectionString("MessagesConnection");
 
-            services.AddDbContext<UserContext>(options => options.UseMySql(ServerVersion.AutoDetect(userConnection)));
-            services.AddDbContext<MessagesContext>(options => options.UseMySql(ServerVersion.AutoDetect(messagesConnection)));
+            services.AddDbContext<UserContext>(options => options.UseMySql(userConnection, ServerVersion.AutoDetect(userConnection)));
+            services.AddDbContext<MessagesContext>(options => options.UseMySql(messagesConnection, ServerVersion.AutoDetect(messagesConnection)));
 
             // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
