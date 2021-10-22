@@ -23,11 +23,12 @@ function show_messages(data) {
         message = JSON.parse(data["messages"][i]);
         if (message['Email'] == my_name) {
             node.classList.add('user-me');
+            node.textContent = message['Message'];
         } else {
             node.classList.add('user-other');
+            node.textContent = "Собеседник: " + message['Message'];
         }
         
-        node.textContent = message['Message'];
         messages_container.append(node);
     }
     messages_container.scrollTop = messages_container.scrollHeight;
@@ -57,11 +58,12 @@ function show_users(data) {
 
         but.id = email;
         but.classList.add("btn");
+        but.classList.add("full-width");
         but.textContent = email;
 
         node.append(but);
         users_container.append(node);
-        if (i == 0) {
+        if (email == chosenUser || chosenUser == "" && i == 0) {
             choose_user(email);
         }
         but.addEventListener("click", function () {
@@ -95,10 +97,11 @@ function post_message(user_name, receiver_name, message) {
         type: 'POST',
         url: messagesUrl,
         dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(message),
         headers: {
             "Sender": user_name,
-            "Receiver": receiver_name,
-            "Message": message
+            "Receiver": receiver_name
         },
         success: function (data) {
             on_post_success(user_name, receiver_name);
@@ -137,6 +140,7 @@ function get_users(user_name) {
 function update_messages() {
     setTimeout(update_messages, 5000);
     get_messages(my_name, chosenUser);
+    get_users(my_name);
 }
 
 setTimeout(update_messages, 5000);

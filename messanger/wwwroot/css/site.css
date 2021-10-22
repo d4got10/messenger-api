@@ -191,7 +191,16 @@ body {
 
 .scrollable{
     overflow-y: scroll;
-    height: 400px;
+    overflow-x: hidden;
+    height: 720px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.full-width{
+    display: block;
+    width: 100%;
+    border-radius: 0;
 }
 
 .btn {
@@ -213,9 +222,9 @@ body {
 }
 
 .user-me{
-    text-align: left;
+    text-align: right;
 }
 
 .user-other{
-    text-align: right;
+    text-align: left;
 }

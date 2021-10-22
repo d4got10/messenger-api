@@ -52,7 +52,7 @@ namespace network_technologies.Controllers
         [HttpPost]
         public async Task<StatusCodeResult> Post([FromHeader(Name = "Sender")]string senderUserName,
             [FromHeader(Name = "Receiver")] string receiverUserName,
-            [FromHeader(Name = "Message")] string message)
+            [FromBody] string message)
         {
             if (string.IsNullOrEmpty(senderUserName) || string.IsNullOrEmpty(receiverUserName) || string.IsNullOrEmpty(message))
                 return StatusCode(400);
