@@ -1,0 +1,230 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.in-row {
+    display: inline;
+    align-content: center;
+}
+
+.align-right {
+    float: right;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.big-text {
+    font-size: 36px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.big-bold-text {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.text-main-font {
+    font-family: 'Orelega One', cursive;
+}
+
+.header {
+    margin-right: 100px;
+}
+
+.header-nav-button {
+    padding: 100px 100px 200px 300px;
+}
+
+/* Dropdown Button */
+.drop-btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.red {
+    color: red;
+}
+
+.white {
+    color: white;
+}
+
+.blue {
+    color: blue;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.small-image {
+    width: 600px;
+}
+
+body {
+    background-color: rgba(72,178,149,0.83);
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .drop-btn {
+    background-color: #3e8e41;
+}
+
+#messages {
+}
+
+.chat {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.scrollable{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 720px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.full-width{
+    display: block;
+    width: 100%;
+    border-radius: 0;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.user-selected-btn{
+    background: #eee;
+}
+
+/* On mouse-over */
+.btn:hover {
+    background: #eee;
+}
+
+.user-me{
+    text-align: right;
+}
+
+.user-other{
+    text-align: left;
+}
